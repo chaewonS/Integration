@@ -4,15 +4,19 @@ import time
 from TTS import dest_reader
 from TTS import txt_reader
 
-GPIO.setmode(GPIO.BCM)
+# GPIO.setmode(GPIO.BCM)
 
-Start_Pin = 5
-Desti1_Pin = 17     # library -> 1
-Desti2_Pin = 24     # music   -> 2
+Start_Pin = 21
+Desti1_Pin = 20     # library -> 1
+Desti2_Pin = 16     # music   -> 2
+Desti3_Pin = 1     # music   -> 2
+Desti4_Pin = 7     # music   -> 2
 
 GPIO.setup(Start_Pin, GPIO.IN)
 GPIO.setup(Desti1_Pin, GPIO.IN)
 GPIO.setup(Desti2_Pin, GPIO.IN)
+GPIO.setup(Desti3_Pin, GPIO.IN)
+GPIO.setup(Desti4_Pin, GPIO.IN)
 
 def detect_start():
     start_time = time.time()

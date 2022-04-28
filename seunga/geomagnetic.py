@@ -45,6 +45,8 @@ def read_raw_data(addr):
             value = value - 65536
         return value
 
+def get_angle():
+        print('대충 뭐 각도 갖고 오는 함수')
 
 bus = smbus.SMBus(1) 	# or bus = smbus.SMBus(0) for older version boards
 Device_Address = 0x1e   # HMC5883L magnetometer device address
