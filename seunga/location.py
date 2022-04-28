@@ -72,6 +72,10 @@ def find_pair(mac):
     return my_group
 
 
+def get_loc():
+    print("여기도 대충 뭐 현재 위치 가져오는 함수")
+    # 현재 위치를 스레싱 처리해서 계속 가져오게 하는게 좋을 듯??
+    return 12,28
 
 
 best = []   # 현재 위치(그룹)을 모아 놓은 리스트

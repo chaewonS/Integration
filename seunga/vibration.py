@@ -4,9 +4,6 @@ import time
 LEFT = 16
 RIGHT = 20
 
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
-
 GPIO.setup(LEFT, GPIO.OUT)
 GPIO.setup(RIGHT, GPIO.OUT)
 
@@ -20,12 +17,12 @@ def obstacle():
 	time.sleep(0.2)
 	GPIO.output(LEFT, False)
 
-def left(time):					# time은 회전 각도에 따라
+def vib_left(time):					# time은 회전 각도에 따라
 	GPIO.output(LEFT, True)
 	time.sleep(time)
 	GPIO.output(LEFT, False)
 
-def right(time):
+def vib_right(time):
 	GPIO.output(RIGHT, True)
 	time.sleep(time)
 	GPIO.output(RIGHT, False)

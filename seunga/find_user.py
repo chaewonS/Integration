@@ -5,17 +5,16 @@ import time
 from TTS import *
 from button import *
 
-# GPIO.setmode(GPIO.BCM)
+PIR1 = 23
+PIR2 = 24
+GPIO.setup(PIR1, GPIO.IN)
+GPIO.setup(PIR2, GPIO.IN)
 
-# pirPin = 23
-
-# GPIO.setup(pirPin, GPIO.IN)
-
-def detecting_people(pirPin):
+def detecting_people():
     while True:
         # 사람이 2초 이상 감지되면 등으로 조건 추가
         # 감도가 너무 높음
-        if GPIO.input(pirPin):
+        if GPIO.input(PIR1) or GPIO.input(PIR2):
             txt_reader("ment1")         # 장치가 여기있음을 홍보
             if detect_start() == 1:
                 txt_reader("ment2")     # 사용 방법 안내

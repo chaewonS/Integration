@@ -7,19 +7,25 @@ from button import *
 
 GPIO.setmode(GPIO.BCM)
 
-out = 25
-range = 8
-
-GPIO.setup(out, GPIO.IN)
-GPIO.setup(range, GPIO.OUT) 
-
 # range pin
 # 1m - False / 3m - True
-GPIO.output(range, False)
+
+OUT1 = 25
+RANGE1 = 8
+GPIO.setup(OUT1, GPIO.IN)
+GPIO.setup(RANGE1, GPIO.OUT)
+GPIO.output(RANGE1, False)
+
+OUT2 = 22
+RANGE2 = 27         # 확인 필요
+GPIO.setup(OUT2, GPIO.IN)
+GPIO.setup(RANGE2, GPIO.OUT)
+GPIO.output(RANGE2, False)
+
 
 def ultrasound_sensing():
     while True:
-        if GPIO.input(out) == 0:
+        if GPIO.input(OUT1) == 0 or GPIO.input(OUT2) == 0:
             return 0
 
 # 출력
