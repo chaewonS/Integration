@@ -4,7 +4,7 @@ from threading import Thread
 import RPi.GPIO as GPIO
 import time
 
-from TTS import *
+# from ttts import *
 from button import *
 
 PIR1 = 23
@@ -20,7 +20,7 @@ def detecting_people():
             # txt_reader("ment1")         # 장치가 여기있음을 홍보
             print('---PIR 감지 후 버튼 입력 대기 중---')
             if detect_start() == 1:
-                txt_reader("ment2")     # 사용 방법 안내
+                # txt_reader("ment2")     # 사용 방법 안내
                 return 1
             else:
                 return 0

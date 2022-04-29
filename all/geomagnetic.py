@@ -46,7 +46,6 @@ def read_raw_data(addr):
         return value
 
 def get_angle():
-        print('대충 뭐 각도 갖고 오는 함수')
         return loc.heading_angle
 
 
@@ -83,3 +82,34 @@ def geomagnetic_thread():
                 loc.heading_angle = heading_angle
                 sleep(0.1)
 
+if __name__ == "__main__":
+        bus = smbus.SMBus(1) 	# or bus = smbus.SMBus(0) for older version boards
+        Device_Address = 0x1e   # HMC5883L magnetometer device address
+
+        Magnetometer_Init()     # initialize HMC5883L magnetometer 
+
+        print (" Reading Heading Angle")
+
+        while True:
+        
+                #Read Accelerometer raw value
+                x = read_raw_data(X_axis_H)
+                z = read_raw_data(Z_axis_H)
+                y = read_raw_data(Y_axis_H)
+
+                heading = math.atan2(y, x) + declination
+                
+                #Due to declination check for >360 degree
+                if(heading > 2*pi):
+                        heading = heading - 2*pi
+
+                #check for sign
+                if(heading < 0):
+                        heading = heading + 2*pi
+
+                #convert into angle
+                heading_angle = int(heading * 180/pi)
+
+                print ("Heading Angle = %d°" %heading_angle)
+                loc.heading_angle = heading_angle
+                sleep(0.1)

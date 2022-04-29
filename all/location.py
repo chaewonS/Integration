@@ -74,8 +74,6 @@ def find_pair(mac):
 
 def get_loc():
     # print("여기도 대충 뭐 현재 위치 가져오는 함수")
-    # # 현재 위치를 스레싱 처리해서 계속 가져오게 하는게 좋을 듯??
-    # return 12,28
     return loc.now_loc
 
 def location_thread():
@@ -133,10 +131,9 @@ def location_thread():
                 if len(best) == 3:          # 현위치 3개가 모였을 때, 최빈 값 찾는 코드
                     # print("----------------------------")
                     best_count = Counter(best).most_common(1)
-                    print(best, 'my_location:', best_count[0][0])
+                    print('my_location:', best_count[0][0])
+                    # print(best, 'my_location:', best_count[0][0])
                     # print("my location",best_count[0][0])
                     loc.now_loc = best_count[0][0]
-                    print("----------------------------")
+                    # print("----------------------------")
                     best = []
-
-location_thread()

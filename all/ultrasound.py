@@ -4,7 +4,7 @@ from threading import Thread
 import RPi.GPIO as GPIO
 import time
 
-from TTS import *
+# from ttts import *
 from button import *
 
 GPIO.setmode(GPIO.BCM)

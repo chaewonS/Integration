@@ -8,7 +8,7 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
 from find_user import *
-from TTS import *
+# from ttts import *
 from button import *
 from ultrasound import *
 from vibration import *
@@ -35,6 +35,7 @@ def intro():
             # 스레딩 처리하기. 음성 듣는 중에도 버튼 누르면 동작하도록
             
             DEST = set_destination()        # 목적지 정보 획득
+            print("목적지:",DEST)
             # 장애물 감지 처리 해줘야함
             perform(DEST)                   # 현재 위치 파악, 경로 탐색, 경로 안내
 
@@ -59,20 +60,14 @@ def perform(DEST):
 
 
 if __name__ == "__main__":
-    # proc1 = Thread(target=ultrasound_sensing, args=())
-    # proc2 = Thread(target=obstacle, args=())
-    # proc3 = Thread(target=txt_reader, args=())
-    # proc1.start()
-    # proc2.start()
-    # proc3.start()
-    gth = Thread(target = geomagnetic_thread)
-    gth.daemon = True
+    # gth = Thread(target=geomagnetic_thread)
+    lth = Thread(target=location_thread)
 
-    lth = Thread(target = location_thread)
+    # gth.daemon = True
     lth.daemon =True
 
-    gth.start()
+    # gth.start()
     lth.start()
-    print("대충 뭐 스레딩 한다는 뜻")
-
+    # print("대충 뭐 스레딩 한다는 뜻")
+    print("아니 이거 왜이래?")
     intro()        
