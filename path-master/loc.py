@@ -1,2 +1,2 @@
 heading_angle = -1
-now_node = -1
+now_loc = -1
