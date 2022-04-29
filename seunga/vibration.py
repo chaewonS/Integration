@@ -1,8 +1,8 @@
 import RPi.GPIO as GPIO
 import time
 
-LEFT = 16
-RIGHT = 20
+LEFT = 12
+RIGHT = 8
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)

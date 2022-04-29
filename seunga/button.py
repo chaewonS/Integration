@@ -6,11 +6,11 @@ from TTS import txt_reader
 
 # GPIO.setmode(GPIO.BCM)
 
-Start_Pin = 21
-Desti1_Pin = 20     # library -> 1
-Desti2_Pin = 16     # music   -> 2
-Desti3_Pin = 1     # music   -> 2
-Desti4_Pin = 7     # music   -> 2
+Start_Pin = 7
+Desti1_Pin = 21     # library -> 1
+Desti2_Pin = 20     # music   -> 2
+Desti3_Pin = 16     # music   -> 2
+Desti4_Pin = 1     # music   -> 2
 
 GPIO.setup(Start_Pin, GPIO.IN)
 GPIO.setup(Desti1_Pin, GPIO.IN)
