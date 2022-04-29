@@ -1,0 +1,70 @@
+# main.py
+- intro
+초기에 사용자를 감지하고, 사용중 상태가 되면 목적지 입력을 받음.
+초기 세팅이 모두 끝나면 perform을 호출함
+
+- perform
+초음파 센서로 1m 이내에 물체가 감지되면 실시간으로 진동을 발생시킴.
+
+
+# find user.py
+- detecting_people
+pir로 사용자를 감지하는 함수
+intro에서 호출됨. 
+pir 센서에 사람이 감지되면 장치의 위치를 알리는 멘트가 재생됨.
+detect_start를 호출.
+시작 버튼이 눌리면 장치의 사용법을 안내하는 멘트가 재생됨.
+
+
+# vibration.py
+- obstacle
+장애물이 있는 경우의 진동.
+ultrasound_sensing에서 호출됨.
+좌우 진동이 모두 울리는 함수
+현재 코드에서는 왼쪽만 울림
+
+- left
+방향 전환 시 왼쪽의 진동이 울리게 함.
+회전 각도에 따라 인수를 주어야 함.
+
+- right
+방향 전환 시 오른쪽의 진동이 울리게 함.
+회전 각도에 따라 인수를 주어야 함.
+
+
+# button.py
+- detect_start
+시작 버튼이 눌리는 것을 감지
+detecting_people에서 호출됨.
+호출되고 1분 내에 버튼이 눌리지 않으면 main의 USING을 미사용 상태로 바꿈
+
+- set_destination
+목적지를 설정하는 함수
+목적지의 값을 return해주고 TTS를 호출
+
+
+# ultrasound.py
+- ultrasound_sensing 
+초음파 센서로 범위 내 물체 존재 여부를 확인
+존재 시, 진동 발생
+
+
+# TTS.py
+- txt_reader
+텍스트 파일을 읽어주는 함수
+
+- dest_reader
+인수에 따라 설정된 목적지를 읽어주는 함수
+
+
+# ment1.txt
+기기의 존재를 알리는 내용
+시작 버튼을 눌러라
+
+
+# ment2.txt
+사용법을 안내하고, 목적지를 입력하라는 내용
+
+
+# ment3.txt
+그냥 출발한다는 알림

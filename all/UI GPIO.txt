@@ -1,0 +1,58 @@
+초음파1 - OUT (파란색)25 RANGE(보라) 8
+초음파2 - OUT 22 RANGE 272234고ㅡ,
+
+
+PIR 1 - 23 (노랑)
+PIR 2 - 24
+
+지자계
+SCL - 3
+SDA - 2
+
+
+진동1
+진동2
+
+
+버튼1 - 21
+버튼2 - 20
+버튼3 - 16
+버튼4 - 1
+버튼5 - 7
+
+
+PIR1 = 23
+PIR2 = 24
+GPIO.setup(PIR1, GPIO.IN)
+GPIO.setup(PIR2, GPIO.IN)
+
+MAG_SCL = 3
+MAG_SDA = 2
+
+START_BUTTON = 21
+BUTTON1 = 20
+BUTTON2 = 16
+BUTTON3 = 1
+BUTTON4 = 7
+GPIO.setup(START_BUTTON, GPIO.IN)
+GPIO.setup(BUTTON1, GPIO.IN)
+GPIO.setup(BUTTON2, GPIO.IN)
+GPIO.setup(BUTTON3, GPIO.IN)
+GPIO.setup(BUTTON4, GPIO.IN)
+
+OUT1 = 25
+RANGE1 = 8
+GPIO.setup(OUT1, GPIO.IN)
+GPIO.setup(RANGE1, GPIO.OUT)
+GPIO.output(RANGE1, False)
+
+OUT2 = 22
+RANGE2 = 27         # 확인 필요
+GPIO.setup(OUT2, GPIO.IN)
+GPIO.setup(RANGE2, GPIO.OUT)
+GPIO.output(RANGE2, False)
+
+LEFT = 16
+RIGHT = 20
+GPIO.setup(LEFT, GPIO.OUT)
+GPIO.setup(RIGHT, GPIO.OUT)
