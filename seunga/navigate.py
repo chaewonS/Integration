@@ -52,6 +52,7 @@ def navigate(DEST):
             elif turn_direction == 'left':
                 while (want-10) >= me and me >= (want+10):  # 목표 방향 +-10 이내가 될 때 까지
                     vib_left()      # 진동을 발생
+            vib_stop()
 
     return 1
 

@@ -55,10 +55,4 @@ def perform(DEST):
 
 
 if __name__ == "__main__":
-    # proc1 = Thread(target=ultrasound_sensing, args=())
-    # proc2 = Thread(target=obstacle, args=())
-    # proc3 = Thread(target=txt_reader, args=())
-    # proc1.start()
-    # proc2.start()
-    # proc3.start()
     intro()        
