@@ -56,12 +56,12 @@ beacon9 = dict()
 beacon9["location"] = "1,1"
 beacon9["place"] = "좌상단"
 beacon9["group"] = "5"
-Beacon["00:19:01:70:81:33"] = beacon9
+Beacon["00:19:01:70:82:cb"] = beacon9
 beacon8 = dict()
 beacon8["location"] = "1,1"
 beacon8["place"] = "좌상단"
 beacon8["group"] = "1"
-Beacon["00:19:01:70:81:33"] = beacon8
+Beacon["00:19:01:70:86:2e"] = beacon8
 
 with io.open('./pair.json', 'wb',
 # encoding='utf-8'
