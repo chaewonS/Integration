@@ -8,19 +8,19 @@ beacon1 = dict()
 beacon1["location"] = "12,29"
 beacon1["place"] = "교수님랩실"
 beacon1["group"] = (12,29)
-Beacon["00:19:01:70:81:33"] = beacon1#
+Beacon["00:19:01:70:85:c3"] = beacon1#
 beacon2 = dict()
 beacon2["location"] = "12,29"
 beacon2["place"] = "좌상단"
 beacon2["group"] = (12,29)
-Beacon["00:19:01:70:80:d9"] = beacon2#
+Beacon["00:19:01:70:86:2f"] = beacon2#
 
 
 beacon3 = dict()
 beacon3["location"] = "12,26"
 beacon3["place"] = "연구실"
 beacon3["group"] = (12,26)
-Beacon["00:19:01:70:80:de"] = beacon3
+Beacon["00:19:01:70:80:de"] = beacon3 #
 beacon4 = dict()
 beacon4["location"] = "12,26"
 beacon4["place"] = "좌상단"
@@ -44,13 +44,14 @@ beacon7 = dict()
 beacon7["location"] = "10,19"
 beacon7["place"] = "4층EV"
 beacon7["group"] = (10,19)
-Beacon["00:19:01:70:81:75"] = beacon7#
+Beacon["00:19:01:70:81:4e"] = beacon7#
 beacon8 = dict()
 beacon8["location"] = "10,19"
 beacon8["place"] = "좌상단"
 beacon8["group"] = (10,19)
-Beacon["00:19:01:70:84:4b"] = beacon8 
+Beacon["00:19:01:70:84:4b"] = beacon8 #
 
+#--------------------
 beacon9 = dict()
 beacon9["location"] = "11,18"
 beacon9["place"] = "402(C)"
