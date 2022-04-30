@@ -64,7 +64,7 @@ def calculateDistance(rssi) :
 # #https://github.com/location-competition/indoor-location-competition-20
 
 def simpleDistance(rssi):
-    TxPower = 41
+    TxPower = 63
     return 10 ** ((TxPower - rssi )/(10*4)) # 4 = n : 실내공간
 
 def find_pair(mac):
@@ -102,7 +102,7 @@ def location_thread():
             # print(beacon_list)
 
             pair = []       # 비콘의 맥, 그룹, rssi
-            if len(beacon_list) == 10:          # 그룹 매칭 단위
+            if len(beacon_list) == 13:          # 그룹 매칭 단위
                 for g in beacon_list:
                     # g[0]: MAC, g[1]: RSSI
                     pair.append([g[0],tuple(find_pair(g[0])),g[1]])    # MAC과 그룹 번호 저장
@@ -128,7 +128,7 @@ def location_thread():
 
                 beacon_list = []
 
-                if len(best) == 3:          # 현위치 3개가 모였을 때, 최빈 값 찾는 코드
+                if len(best) == 10:          # 현위치 3개가 모였을 때, 최빈 값 찾는 코드
                     # print("----------------------------")
                     best_count = Counter(best).most_common(1)
                     print('my_location:', best_count[0][0])
