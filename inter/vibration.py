@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import RPi.GPIO as GPIO
 import time
 
@@ -46,27 +48,3 @@ def vib_stop():
 # 	time.sleep(0.02)
 	
 # myPwm.stop()
-
-GPIO.output(LEFT, True)
-time.sleep(1)
-GPIO.output(LEFT, False)
-
-# GPIO.output(RIGHT, True)
-# time.sleep(1)
-# GPIO.output(RIGHT, False)
-
-# GPIO.output(LEFT, True)
-# GPIO.output(RIGHT, True)
-# time.sleep(1)
-# GPIO.output(RIGHT, False)
-# GPIO.output(LEFT, False)
-
-# PWM
-myPwm = GPIO.PWM(LEFT, 1000) # LEFT, frequency
-myPwm.start(0)
-
-for i in range(100):
-	myPwm.ChangeDutyCycle(i)	#0~100%
-	time.sleep(0.05)
-	
-myPwm.stop()

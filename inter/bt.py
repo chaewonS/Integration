@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
+
 import RPi.GPIO as GPIO
 import time
 
-from TTS import dest_reader
-from TTS import txt_reader
+# from ttts import *
 
 # GPIO.setmode(GPIO.BCM)
 
@@ -11,7 +12,8 @@ Desti1_Pin = 21     # library -> 1
 Desti2_Pin = 20     # music   -> 2
 Desti3_Pin = 16     # music   -> 2
 Desti4_Pin = 1     # music   -> 2
-
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(Start_Pin, GPIO.IN)
 GPIO.setup(Desti1_Pin, GPIO.IN)
 GPIO.setup(Desti2_Pin, GPIO.IN)
@@ -34,16 +36,23 @@ def detect_start():
 def set_destination():
     while True:
         if GPIO.input(Desti1_Pin) == 0:
-            print("도서관 버튼 눌림")
-            dest_reader(1)
-            txt_reader("ment3")     # 없어도 됨
-            return 1   
+            print("1번 버튼(12,22) 눌림")
         elif GPIO.input(Desti2_Pin) == 0:
-            print("음악실 버튼 눌림")
-            dest_reader(2)
-            txt_reader("ment3")     # 없어도 됨
-            return 2
+            print("2번 버튼(12,21) 눌림")
+        elif GPIO.input(Desti3_Pin) == 0:
+            print("3번 버튼(12,18) 눌림")
+        elif GPIO.input(Desti4_Pin) == 0:
+            print("4번 버튼(10,18) 눌림")
+        elif GPIO.input(Start_Pin) == 0:
+            print("시작 버튼 눌림")
         else:
-            print("--목적지 선택 파트--")
+            print("--안눌림--")
             time.sleep(0.2)
-
+        # print(GPIO.input(Desti1_Pin))
+        # print(GPIO.input(Desti2_Pin))
+        # print(GPIO.input(Desti3_Pin))
+        # print(GPIO.input(Desti4_Pin))
+        # print(GPIO.input(Start_Pin))
+        # print("-------------------------------")
+        time.sleep(0.1)
+set_destination()

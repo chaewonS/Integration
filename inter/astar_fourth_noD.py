@@ -113,3 +113,4 @@ graph1 = Graph(adjac_lis)
 graph1.a_star_algorithm('N1&2', 'N15&16(EV)') #출발지~목적지
 graph1.a_star_algorithm('N1&2', 'N25&26')
 graph1.a_star_algorithm('N1&2', 'N17&18(C)')
+graph1.a_star_algorithm('N1&2', 'N1&2')

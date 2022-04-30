@@ -8,7 +8,7 @@ import json
 import threading
 import time
 from collections import Counter
-
+import loc
 
 with io.open('./pair.json') as f:
     info = json.load(f)
@@ -68,18 +68,17 @@ def simpleDistance(rssi):
     return 10 ** ((TxPower - rssi )/(10*4)) # 4 = n : 실내공간
 
 def find_pair(mac):
-    my_group = int(info[mac]["group"])
+    my_group = info[mac]["group"]
     return my_group
 
 
 def get_loc():
-    print("여기도 대충 뭐 현재 위치 가져오는 함수")
-    # 현재 위치를 스레싱 처리해서 계속 가져오게 하는게 좋을 듯??
-    return 12,28
+    # print("여기도 대충 뭐 현재 위치 가져오는 함수")
+    return loc.now_loc
 
+def location_thread():
+    best = []   # 현재 위치(그룹)을 모아 놓은 리스트
 
-best = []   # 현재 위치(그룹)을 모아 놓은 리스트
-if __name__ == '__main__':
     try:
         sock = bluez.hci_open_dev(dev_id)
         print("ble thread started")
@@ -91,42 +90,50 @@ if __name__ == '__main__':
     blescan.hci_le_set_scan_parameters(sock)
     blescan.hci_enable_le_scan(sock)
 
+    beacon_list = []
     while True:
-        maclist = []
         returnedList = blescan.parse_events(sock, 10)
 
         for beacon in returnedList:
-            if beacon[:5] == "00:19":
+            if beacon[:5] == "00:19":           # 우리의 fc 친구들만 모아
                 beacon = beacon.split(",")
-                beacon_list.append([beacon[0],beacon[5]])   # MAC, RSSI
+                beacon_list.append([beacon[0],beacon[5]])   # MAC, RSSI만 리스트에 넣기
 
             # print(beacon_list)
 
             pair = []       # 비콘의 맥, 그룹, rssi
-            if len(beacon_list) == 13:
+            if len(beacon_list) == 10:          # 그룹 매칭 단위
                 for g in beacon_list:
-                    pair.append([g[0],find_pair(g[0]),g[1]])
+                    # g[0]: MAC, g[1]: RSSI
+                    pair.append([g[0],tuple(find_pair(g[0])),g[1]])    # MAC과 그룹 번호 저장
 
-                result = []     # 그룹, rssi
+                result = []     # rssi, 그룹 / 커플만 있음.
                 i = 0
+
+                # print("pari:",pair)
                 for j in pair:
-                    for k in pair[i+1:]:
-                        if j[0] != k[0] and j[1] == k[1]:
-                            j[2] = int(j[2])
-                            aver = int((k[1]+j[1])//2)
-                            result.append([j[2],aver])
+                    for k in pair[i+1:]:    # pair 전체를 돌면서 쌍 매칭
+                        # j[0]: MAC, j[1]: 그룹, j[2]:rssi
+                        if j[0] != k[0] and j[1] == k[1]:   # 맥은 다르고 rssi는 같으면
+                            j[2] = int(j[2])                
+                            aver = int((int(k[2])+int(j[2]))//2)
+                            result.append([aver,j[1]])
                     i += 1
                     
-                if len(result) > 0:         # 비콘 그룹을 찾았을 때
-                    group = max(result)
-                    print("group: ",group)
+                if len(result) > 0:         # 비콘 그룹이 있을 때
+                    # print("result:",result)
+                    group = max(result)     # 
+                    # print("group: ",group)
                     best.append(group[1])
 
                 beacon_list = []
 
                 if len(best) == 3:          # 현위치 3개가 모였을 때, 최빈 값 찾는 코드
+                    # print("----------------------------")
                     best_count = Counter(best).most_common(1)
-                    print("----------------------------")
-                    print("my location",best_count[0][0])
-                    print("----------------------------")
+                    print('my_location:', best_count[0][0])
+                    # print(best, 'my_location:', best_count[0][0])
+                    # print("my location",best_count[0][0])
+                    loc.now_loc = best_count[0][0]
+                    # print("----------------------------")
                     best = []

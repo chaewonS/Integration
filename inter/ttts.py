@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from gtts import gTTS
 import os
 

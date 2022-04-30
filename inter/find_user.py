@@ -1,8 +1,10 @@
+# -*- coding: utf-8 -*-
+
 from threading import Thread
 import RPi.GPIO as GPIO
 import time
 
-from TTS import *
+# from ttts import *
 from button import *
 
 PIR1 = 23
@@ -15,9 +17,10 @@ def detecting_people():
         # 사람이 2초 이상 감지되면 등으로 조건 추가
         # 감도가 너무 높음
         if GPIO.input(PIR1) or GPIO.input(PIR2):
-            txt_reader("ment1")         # 장치가 여기있음을 홍보
+            # txt_reader("ment1")         # 장치가 여기있음을 홍보
+            print('---PIR 감지 후 버튼 입력 대기 중---')
             if detect_start() == 1:
-                txt_reader("ment2")     # 사용 방법 안내
+                # txt_reader("ment2")     # 사용 방법 안내
                 return 1
             else:
                 return 0
