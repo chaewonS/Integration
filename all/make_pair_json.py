@@ -31,12 +31,12 @@ Beacon["00:19:01:70:86:35"] = beacon4#
 beacon5 = dict()
 beacon5["location"] = "12,22"
 beacon5["place"] = "학회실"
-beacon5["group"] = (12,18)
+beacon5["group"] = (12,22)
 Beacon["00:19:01:70:82:af"] = beacon5#
 beacon6 = dict()
 beacon6["location"] = "12,22"
 beacon6["place"] = "좌상단"
-beacon6["group"] = (12,18)
+beacon6["group"] = (12,22)
 Beacon["00:19:01:70:85:0f"] = beacon6
 
 
