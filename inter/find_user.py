@@ -15,18 +15,15 @@ GPIO.setup(PIR2, GPIO.IN)
 def detecting_people():
     while True:
         # 사람이 2초 이상 감지되면 등으로 조건 추가
-        # 감도가 너무 높음
         if GPIO.input(PIR1) or GPIO.input(PIR2):
             # txt_reader("ment1")         # 장치가 여기있음을 홍보
             print('---PIR 감지 후 버튼 입력 대기 중---')
             if detect_start() == 1:
                 # txt_reader("ment2")     # 사용 방법 안내
                 return 1
-            else:
-                return 0
         else:
             print("No motion")
-            return 0
+            time.sleep(0.1)
 
 
 # pir로 사람 감지 후, 2번 방송. 

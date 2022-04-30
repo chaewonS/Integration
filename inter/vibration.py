@@ -22,15 +22,13 @@ def obstacle():
 	time.sleep(0.2)
 	GPIO.output(LEFT, False)
 
-def vib_left(time):					# time은 회전 각도에 따라
+def vib_left():					# time은 회전 각도에 따라
 	GPIO.output(LEFT, True)
-	time.sleep(time)
-	GPIO.output(LEFT, False)
+	# time.sleep(1)
+	# GPIO.output(LEFT, False)
 
-def vib_right(time):
+def vib_right():
 	GPIO.output(RIGHT, True)
-	time.sleep(time)
-	GPIO.output(RIGHT, False)
 
 def vib_stop():
     GPIO.output(LEFT, False)
@@ -48,3 +46,5 @@ def vib_stop():
 # 	time.sleep(0.02)
 	
 # myPwm.stop()
+
+# vib_left()

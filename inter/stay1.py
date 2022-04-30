@@ -78,7 +78,6 @@ def get_loc():
 
 def location_thread():
     best = []   # 현재 위치(그룹)을 모아 놓은 리스트
-    final_best = []
 
     try:
         sock = bluez.hci_open_dev(dev_id)
@@ -96,11 +95,11 @@ def location_thread():
         returnedList = blescan.parse_events(sock, 10)
 
         for beacon in returnedList:
-            if beacon[:5] == "00:19":           # 우리의 fc 친구들만 모아
+            if beacon[:11] == "00:19:01:70":           # 우리의 fc 친구들만 모아
                 beacon = beacon.split(",")
                 beacon_list.append([beacon[0],beacon[5]])   # MAC, RSSI만 리스트에 넣기
 
-            # print(beacon_list)
+            #print(beacon_list)
 
             pair = []       # 비콘의 맥, 그룹, rssi
             if len(beacon_list) == 10:          # 그룹 매칭 단위
@@ -111,17 +110,16 @@ def location_thread():
                 result = []     # rssi, 그룹 / 커플만 있음.
                 i = 0
 
-                #print("pair:",pair)
-
+                # print("pari:",pair)
                 for j in pair:
                     for k in pair[i+1:]:    # pair 전체를 돌면서 쌍 매칭
                         # j[0]: MAC, j[1]: 그룹, j[2]:rssi
                         if j[0] != k[0] and j[1] == k[1]:   # 맥은 다르고 rssi는 같으면
-                            j[2] = int(j[2])
+                            j[2] = int(j[2])                
                             aver = int((int(k[2])+int(j[2]))//2)
                             result.append([aver,j[1]])
                     i += 1
-
+                    
                 if len(result) > 0:         # 비콘 그룹이 있을 때
                     # print("result:",result)
                     group = max(result)     # 
@@ -129,69 +127,18 @@ def location_thread():
                     best.append(group[1])
 
                 beacon_list = []
-		#print(beacon_list)
+                #print(beacon_list)
 
                 if len(best) == 13:          # 현위치 3개가 모였을 때, 최빈 값 찾는 코드
                     # print("----------------------------")
                     best_count = Counter(best).most_common(1)
-                    #print(best_count)
-                    #print(best_count[0])
-                    #print(best_count[0][0])
-                    final_best.append(best_count[0][0])
-                    #아래 출력하면 됨
-                    # print('my_location: ', best_count[0][0])
+                    print('my_location:', best_count[0][0])
                     # print(best, 'my_location:', best_count[0][0])
-                    #아래 출력하면 됨
-                   # loc.now_loc = best_count[0][0]
+                    # print("my location",best_count[0][0])
+                    loc.now_loc = best_count[0][0]
                     # print("----------------------------")
                     best = []
 
-		if len(final_best) == 8:
-                   final_best_count = Counter(final_best).most_common(1)
-                   print(final_best_count[0][0])
-                  # temp = (12, 29)
-                  # for (i,j) in final_best_count:
-                  #     temp = i
-                  #     for (m,n) in final_best_count:
-                  #       if m != temp:
-                  #         print(m)
-                  #       else:
-                  #         print("같은 위치입니다.")
-                  # for index, (i,j) in enumerate(final_best_count):
-                  #     temp = i
-                  #     if temp != i:
-                  #      print(index, i)
-                  #     else:
-                  #      print("계속해서 같은 위치입니다.")
-                  # for (i,j) in final_best_count:
-                  #    if i != i+1:
-                  #      print(i)
-                  #    else:
-                  #      print("계속해서 같은 위치입니다.")
-                  #     pre = i
-                  #     print(i)
-                  #     if pre != i+1:
-                  #     	 print(i+1)
-                  #     else:
-                  #       print("계속해서 같은 위치입니다.")
-                   #pre = final_best_count[0][0]
-                   #for i in final_best_count:
-                   #     print(final_best_count[0][0])
-
-                #   print(final_best_count[0][0])
-#                   for i in final_best_count:
-#                       print(final_best_count[0][0]
-#                       if (final_best_count[0][0] != final_best_count[i][0]):
-#                        print(final_bect_count[i][0])
- #                  pre = final_best_count
-  #                 for now in final_best_count:
-   #                    if pre != now:
-    #                     print(final_best_count[0][0])
-                   #print('my final location:', final_best_count[0][0])
-                   loc.now_loc = final_best_count[0][0]
-                   final_best = []
-
-if __name__ == "__main__":
-	get_loc()
-	location_thread()
-
+#if __name__ == "__main__":
+#	get_loc()
+#	location_thread()

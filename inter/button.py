@@ -32,21 +32,21 @@ def detect_start():
             print("시작 버튼 눌림")
             return 1
         else:
-            print("--시작 버튼 감지 파트--")
+            print("--시작 버튼을 눌러주세요--")
             time.sleep(0.2)
 
 def set_destination():
     while True:
         if GPIO.input(Desti1_Pin) == 0:
-            print("1번 버튼(12,22) 눌림")
+            print("1번 버튼(12,26) 눌림")
             # dest_reader(1)
             # txt_reader("ment3")     # 없어도 됨
-            return (12,18)
+            return (12,26)
         elif GPIO.input(Desti2_Pin) == 0:
-            print("2번 버튼(12,21) 눌림")
+            print("2번 버튼(12,22) 눌림")
             # dest_reader(2)
             # txt_reader("ment3")     # 없어도 됨
-            return (12,21)
+            return (12,22)
         elif GPIO.input(Desti3_Pin) == 0:
             print("3번 버튼(12,18) 눌림")
             # dest_reader(2)
@@ -60,4 +60,3 @@ def set_destination():
         else:
             print("--목적지 선택 파트--")
             time.sleep(0.2)
-

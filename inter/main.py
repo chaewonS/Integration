@@ -31,16 +31,16 @@ def intro():
 
     while True:
         if USING == 1:
-            print("1")
+            print("USING: 1")
             # 스레딩 처리하기. 음성 듣는 중에도 버튼 누르면 동작하도록
             
             DEST = set_destination()        # 목적지 정보 획득
-            print("목적지:",DEST)
+            print("DESTINATION:",DEST)
             # 장애물 감지 처리 해줘야함
             perform(DEST)                   # 현재 위치 파악, 경로 탐색, 경로 안내
 
         elif USING == 0:
-            print("0")
+            print("USING: 0")
             USING = detecting_people()
 
 
@@ -52,16 +52,10 @@ def perform(DEST):
         print("목적지에 도착했습니다.")
         USING = 0
         
-    # while True:
-    #     # 경로 안내 하면서, 장애물 감지도 해야함 -> threading 
-    #     if ultrasound_sensing() == 0:       # 초음파 1m 이내에 장애물 감지 되면
-    #         obstacle()
-
-    #     while queue:
-    #         node = queue.pop(1)
-
 
 if __name__ == "__main__":
+    print("메인 시작 합니다.")
+
     gth = Thread(target=geomagnetic_thread)
     lth = Thread(target=location_thread)
 
@@ -70,6 +64,5 @@ if __name__ == "__main__":
 
     gth.start()
     lth.start()
-    # print("대충 뭐 스레딩 한다는 뜻")
-    print("아니 이거 왜이래?")
+
     intro()        
