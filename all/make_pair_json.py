@@ -20,7 +20,7 @@ beacon3 = dict()
 beacon3["location"] = "12,26"
 beacon3["place"] = "연구실"
 beacon3["group"] = (12,26)
-Beacon["00:19:01:70:80:de"] = beacon3 #
+Beacon["00:19:01:70:80:de"] = beacon3
 beacon4 = dict()
 beacon4["location"] = "12,26"
 beacon4["place"] = "좌상단"
@@ -49,29 +49,18 @@ beacon8 = dict()
 beacon8["location"] = "10,19"
 beacon8["place"] = "좌상단"
 beacon8["group"] = (15,16)
-Beacon["00:19:01:70:84:4b"] = beacon8 #
+Beacon["00:19:01:70:84:4b"] = beacon8 
 
-#--------------------
 beacon9 = dict()
-<<<<<<< HEAD
 beacon9["location"] = "11,18"
 beacon9["place"] = "402(C)"
 beacon9["group"] = (12,18)
-=======
-beacon9["location"] = "1,1"
-beacon9["place"] = "좌상단"
-beacon9["group"] = "5"
->>>>>>> 53aaf4dc30a18efe3cfc0d1252fe1b3079d2e485
 Beacon["00:19:01:70:82:cb"] = beacon9
-beacon8 = dict()
-beacon8["location"] = "11,18"
-beacon8["place"] = "좌상단"
-<<<<<<< HEAD
-beacon8["group"] = (12,18)
-=======
-beacon8["group"] = "1"
->>>>>>> 53aaf4dc30a18efe3cfc0d1252fe1b3079d2e485
-Beacon["00:19:01:70:86:2e"] = beacon8
+beacon10 = dict()
+beacon10["location"] = "11,18"
+beacon10["place"] = "좌상단"
+beacon10["group"] = (12,18)
+Beacon["00:19:01:70:86:2e"] = beacon10
 
 with io.open('./pair.json', 'wb',
 # encoding='utf-8'
